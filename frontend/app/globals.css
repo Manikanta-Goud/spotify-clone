@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --sp-black:    #000000;
+  --sp-bg:       #121212;
+  --sp-surface:  #181818;
+  --sp-elevated: #282828;
+  --sp-hover:    #2a2a2a;
+  --sp-border:   #333333;
+  --sp-green:    #1DB954;
+  --sp-green-h:  #1ed760;
+  --sp-text:     #ffffff;
+  --sp-subtext:  #b3b3b3;
+  --sp-muted:    #535353;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--sp-black);
+  color: var(--sp-text);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden; /* Spotify uses internal scroll */
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Custom Scrollbar — Spotify-style thin dark */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--sp-muted);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sp-subtext);
+}
+
+/* Selection */
+::selection {
+  background: var(--sp-green);
+  color: var(--sp-black);
+}
+
+/* Spotify range slider (for progress/volume) */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 9999px;
+  background: var(--sp-muted);
+  cursor: pointer;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+input[type="range"]:hover::-webkit-slider-thumb {
+  opacity: 1;
+}
+input[type="range"]:hover {
+  background: var(--sp-green);
+}
+
+/* Subtle card hover */
+.sp-card:hover {
+  background: var(--sp-elevated);
+}
+
+/* Playing animation bars */
+@keyframes bar1 { 0%,100%{height:6px} 50%{height:20px} }
+@keyframes bar2 { 0%,100%{height:14px} 50%{height:6px} }
+@keyframes bar3 { 0%,100%{height:10px} 50%{height:18px} }
+
+.playing-bar span:nth-child(1) { animation: bar1 0.8s ease-in-out infinite; }
+.playing-bar span:nth-child(2) { animation: bar2 0.7s ease-in-out infinite; }
+.playing-bar span:nth-child(3) { animation: bar3 0.9s ease-in-out infinite; }
